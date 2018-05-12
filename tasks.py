@@ -19,3 +19,11 @@ def test():
     print("Running unit tests.\n")
     run("export PYTHONPATH=$(pwd)/src; python3 test/test_knitout.py")
     print("Tests complete!\n")
+
+
+@task
+def example():
+    """Build the examples."""
+    print("Building examples.\n")
+    run("export PYTHONPATH=$(pwd)/src; python3 examples/example.py")
+    print("Done!\n")
