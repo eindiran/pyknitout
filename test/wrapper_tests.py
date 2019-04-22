@@ -1,5 +1,6 @@
 """
-Tests for the Python Knitout compiler.
+pyknitout/test/wrapper_tests.py
+Tests for the pyknitout Python Knitout compiler.
 """
 from knitout import Header, knitlp, tucklp
 
