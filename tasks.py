@@ -1,5 +1,7 @@
 """
-Project tasks for the Python Knitout generator.
+pyknitout/tasks.py
+invoke tasks for pyknitout, a simple wrapper for generating Knitout
+instructions in Python scripts.
 """
 from invoke import task, run
 
