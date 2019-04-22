@@ -19,8 +19,8 @@ def clean():
 def test():
     """Run the unit tests."""
     print("Running unit tests.\n")
-    run("export PYTHONPATH=$(pwd)/src; python3 test/test_knitout.py")
-    print("Tests complete!\n")
+    run("export PYTHONPATH=$(pwd)/src; python3 test/wrapper_tests.py")
+    print("Tests complete\n")
 
 
 @task
