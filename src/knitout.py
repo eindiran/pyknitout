@@ -1,5 +1,6 @@
 """
-Use Python code to automatically generate valid Knitout files.
+pyknitout/src/knitout.py
+Python wrapper for automatically generating valid Knitout files.
 Allows you to avoid writing Knitout by hand.
 """
 from typing import Dict, List, Union
