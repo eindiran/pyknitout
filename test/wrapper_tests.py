@@ -2,7 +2,46 @@
 pyknitout/test/wrapper_tests.py
 Tests for the pyknitout Python Knitout compiler.
 """
-from knitout import Header, knitlp, tucklp
+import unittest
+from knitout import (StartPosition, Instruction,
+                     Yarn, Header, knitlp, tucklp)
+
+
+class TestHeaderGeneration(unittest.TestCase):
+    """Test the generation of a Knitout header."""
+    def test_header():
+        """
+        Get a header object and compare the generated
+        string to the real Knitout we expect.
+        """
+
+    def test_single_yarn():
+        """Test that we can create a header with a single yarn."""
+
+    def test_multiple_yarn():
+        """Test that we can create a header with multiple yarns."""
+
+    def test_yarn_fail():
+        """Test that a header fails to generate when no yarns are given."""
+
+    def test_magic_string():
+        """
+        Check that a header contains a magic string.
+        """
+        yarn = Yarn(name="30-70 Gold Belt", position=1)
+        st_pos = StartPosition.CENTER
+        header = str(Header(version='2.0', carriers='0 1 2 3', machine='DE-FN1922',
+                        gauge=15, yarnc=yarn, pos=st_pos))
+
+
+
+
+    def test_default_version():
+        """Check that we can generate a header without specifying the version of Knitout."""
+
+    def test_magic_string_override():
+        """Check that we are able to override the magic string in a header."""
+
 
 
 def test_header():

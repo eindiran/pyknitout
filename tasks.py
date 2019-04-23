@@ -7,7 +7,7 @@ from invoke import task, run
 
 
 @task
-def clean():
+def clean(ctx):
     """Clean up the .pyc files."""
     print("Cleaning up cached .pyc files.\n")
     run("rm -f src/__pycache__/*.pyc")
@@ -16,7 +16,7 @@ def clean():
 
 
 @task
-def test():
+def test(ctx):
     """Run the unit tests."""
     print("Running unit tests.\n")
     run("export PYTHONPATH=$(pwd)/src; python3 test/wrapper_tests.py")
@@ -24,7 +24,7 @@ def test():
 
 
 @task
-def example():
+def example(ctx):
     """Build the examples."""
     print("Building examples.\n")
     run("export PYTHONPATH=$(pwd)/src; python3 examples/example.py")
