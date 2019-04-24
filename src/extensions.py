@@ -6,6 +6,7 @@ Support for Knitout extensions:
     x-presser-mode
 More info here: https://textiles-lab.github.io/knitout/extensions.html
 """
+from typing import overload
 from enum import Enum
 
 
@@ -40,9 +41,20 @@ def set_speed_num(speed_num: int) -> str:
         raise ValueError('int speed_num (val: {}) must in range 0-15.'.format(speed_num))
 
 
-def set_presser_mode(presser_mode: PresserMode) -> str:
+@overload
+def set_presser_mode(presser_mode: PresserMode) -> str: ...
+@overload
+def set_presser_mode(presser_mode: str) -> str: ...
+
+def set_presser_mode(presser_mode):
     """
     Set the fabric presser mode. Part of the supported Knitout extensions.
     By default, if set_presser_mode is not called, the mode will be set to PresserMode.OFF
     """
-    return 'x-presser-mode {}'.format(presser_mode)
+    if isinstance(presser_mode, PresserMode):
+        return 'x-presser-mode {}'.format(presser_mode)
+    elif presser_mode.lower() in set(mode.value for mode in PresserMode):
+        return 'x-presser-mode {}'.format(presser_mode.lower())
+    else:
+        raise ValueError('str presser_mode (val: {}) is not supported. Supported values: {}'.format(
+            presser_mode, [mode.value for mode in PresserMode]))
