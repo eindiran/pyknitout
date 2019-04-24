@@ -1,6 +1,6 @@
 """
-pyknitout/test/wrapper_tests.py
-Tests for the pyknitout Python Knitout compiler.
+pyknitout/test/test_wrapper.py
+Tests for the main pyknitout wrapper.
 """
 import unittest
 from knitout import (StartPosition, Instruction,

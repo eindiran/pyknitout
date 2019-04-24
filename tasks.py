@@ -19,7 +19,7 @@ def clean(ctx):
 def main_test(ctx):
     """Run the unit tests."""
     print('Running main unit tests.\n')
-    run('export PYTHONPATH=$(pwd)/src; python3 test/wrapper_tests.py')
+    run('export PYTHONPATH=$(pwd)/src; python3 test/test_wrapper.py')
     print('Main tests complete!\n')
 
 
