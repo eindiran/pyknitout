@@ -23,6 +23,9 @@ class PresserMode(Enum):
     def __repr__(self):
         return '<{}.{}>'.format(self.__class__.__name__, self.name)
 
+    def __str__(self):
+        return '{}'.format(self.value)
+
 
 def set_stitch_num(stitch_num: int) -> str:
     """Set the stitch number. Part of the supported Knitout extensions."""
