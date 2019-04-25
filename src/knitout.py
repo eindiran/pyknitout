@@ -38,29 +38,34 @@ class StartPosition(Enum):
     def __repr__(self):
         return '<{}.{}>'.format(self.__class__.__name__, self.name)
 
+    def __str__(self):
+        return '{}'.format(self.value)
+
 
 class Yarn():
     """
     Store information about a Yarn in an object.
-    Values 'position' and 'name' are mandatory, but additional
-    info (wpi, color, and fiber type) can be stores as well.
-    These will not be included in the header.
+    The value 'name' is mandatory, but additional
+    info (wpi, color, and fiber type) can be stored
+    optionally as well. Optional info will not be
+    included in the header.
     """
     def __init__(self, name: str,
-                 position: Union[str, int],
+                 # position: Union[str, int],
                  color: str = '',
                  wpi: int = None,
                  fiber: str = '') -> None:
         self.name = name
-        self.position = str(position)
-        self.key = 'Yarn-{}'.format(position)
+        # self.position = str(position)
+        # self.key = 'Yarn-{}'.format(position)
         self.color = color
         self.fiber = fiber
         self.wpi = wpi
 
     def __str__(self) -> str:
         """Overrides __str__ to return `key: name`"""
-        return self.key + ': ' + self.name
+        # return self.key + ': ' + self.name
+        return self.name
 
     def set_wpi(self, wpi: int) -> None:
         """Set the WPI."""
@@ -85,6 +90,12 @@ class YarnCarrierMap():
     def __repr__(self) -> str:
         return str(self.carriers)
 
+    def __str__(self) -> str:
+        items = []
+        for key, value in self.carriers.items():
+            items.append(';;Yarn-{}: {}\n'.format(key, value))
+        return ''.join(items)
+
     def __contains__(self, carrier: str) -> bool:
         """Allow using `in` operator with YarnCarrierMap."""
         return carrier in self.carriers
@@ -95,7 +106,10 @@ class YarnCarrierMap():
 
     def __setitem__(self, carrier: str, yarn: Union[Yarn, None]) -> None:
         """Allow obj[x] = y."""
-        self.carriers[carrier] = yarn
+        if yarn:
+            self.carriers[carrier] = yarn
+        else:
+            raise TypeError('yarn was None, but should be of type Yarn')
 
     def __delitem__(self, carrier: str) -> None:
         """Allow del obj[x]."""
