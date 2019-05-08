@@ -13,23 +13,57 @@ class TestTucklp(unittest.TestCase):
 
     def test_tucklp_forward(self):
         """Test the forward tucklp loop."""
-        knit_range = reversed(range(2, 12, 2))
-        expected_str = 'tuck - f10 5\n' + \
-                       'tuck - f8 5\n' + \
-                       'tuck - f6 5\n' + \
-                       'tuck - f4 5\n' + \
-                       'tuck - f2 5\n\n'
-        self.assertEqual(expected_str, tucklp(knit_range, "-", "5"))
-
-    def test_tucklp_backward(self):
-        """Test the backward tucklp loop."""
         knit_range = range(1, 11, 2)
         expected_str = 'tuck + f1 5\n' + \
                        'tuck + f3 5\n' + \
                        'tuck + f5 5\n' + \
                        'tuck + f7 5\n' + \
-                       'tuck + f9 5\n\n'
+                       'tuck + f9 5\n'
         self.assertEqual(expected_str, tucklp(knit_range, "+", "5"))
+
+    def test_tucklp_backward(self):
+        """Test the backward tucklp loop."""
+        knit_range = reversed(range(2, 12, 2))
+        expected_str = 'tuck - f10 5\n' + \
+                       'tuck - f8 5\n' + \
+                       'tuck - f6 5\n' + \
+                       'tuck - f4 5\n' + \
+                       'tuck - f2 5\n'
+        self.assertEqual(expected_str, tucklp(knit_range, "-", "5"))
+
+
+class TestKnitlp(unittest.TestCase):
+    """Test the knitlp() knit instruction loop."""
+
+    def test_knitlp_forward(self):
+        """Test the forward knitlp loop."""
+        knit_range = range(1, 11)
+        expected_str = 'knit + f1 5\n' + \
+                       'knit + f2 5\n' + \
+                       'knit + f3 5\n' + \
+                       'knit + f4 5\n' + \
+                       'knit + f5 5\n' + \
+                       'knit + f6 5\n' + \
+                       'knit + f7 5\n' + \
+                       'knit + f8 5\n' + \
+                       'knit + f9 5\n' + \
+                       'knit + f10 5\n'
+        self.assertEqual(expected_str, knitlp(knit_range, '+', '5'))
+
+    def test_knitlp_backward(self):
+        """Test the backward knitlp loop."""
+        knit_range = reversed(range(1, 11))
+        expected_str = 'knit - f10 5\n' + \
+                       'knit - f9 5\n' + \
+                       'knit - f8 5\n' + \
+                       'knit - f7 5\n' + \
+                       'knit - f6 5\n' + \
+                       'knit - f5 5\n' + \
+                       'knit - f4 5\n' + \
+                       'knit - f3 5\n' + \
+                       'knit - f2 5\n' + \
+                       'knit - f1 5\n'
+        self.assertEqual(expected_str, knitlp(knit_range, '-', '5'))
 
 
 class TestHeaderGeneration(unittest.TestCase):
@@ -110,27 +144,6 @@ class TestHeaderGeneration(unittest.TestCase):
                             gauge=15, yarnc=yarnc, pos=st_pos))
         magic_str = header.split('\n')[0]
         self.assertEqual(';!knitout-0.1', magic_str)
-
-
-def test_knitlp():
-    """
-    Test the generation of a knit loop.
-    """
-    knit_range = reversed(range(1, 11))
-    print(knitlp(knit_range, "-", "5"))
-    knit_range = range(1, 11)
-    print(knitlp(knit_range, "+", "5"))
-
-
-def test_tucklp():
-    """
-    Test the generation of a tuck loop.
-    """
-    knit_range = reversed(range(2, 12, 2))
-    print(tucklp(knit_range, "-", "5"))
-    knit_range = range(1, 11, 2)
-    print(tucklp(knit_range, "+", "5"))
-
 
 
 if __name__ == "__main__":
